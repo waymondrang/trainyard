@@ -1,10 +1,19 @@
 {
   "name": "trainyard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A bidirectional task queue built on amqp",
-  "main": "index.js",
-  "author": "Raymond Wang",
+  "main": "index",
+  "author": {
+    "name": "Raymond Wang",
+    "email": "me@waymondrang.com",
+    "url": "https://waymondrang.com"
+  },
   "license": "MIT",
+  "homepage": "https://github.com/waymondrang/trainyard",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/waymondrang/trainyard.git"
+  },
   "dependencies": {
     "amqplib": "^0.10.2"
   }

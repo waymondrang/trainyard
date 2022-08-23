@@ -6,10 +6,10 @@ const amqp = require('amqplib');
 class Railcar {
     constructor() {
         this.data;
-        /** @type {Number} */
-        this.format;
+        this.format; // Railcar.formats
         this.created = new Date();
         this.secret;
+        this.requireConsumer = true;
         this.destination;
     }
 
@@ -44,6 +44,11 @@ class Railcar {
         return this;
     }
 
+    setRequireConsumer(boolean) {
+        this.require_consumer = boolean;
+        return this;
+    }
+
     getData() {
         return this.data;
     }
@@ -64,6 +69,10 @@ class Railcar {
         return this.secret;
     }
 
+    getRequireConsumer() {
+        return this.require_consumer;
+    }
+
     toString() {
         return JSON.stringify(this);
     }
@@ -74,14 +83,15 @@ class Railcar {
      * @returns {railcar} New railcar
      */
     static fromString(string) {
-        var obj = JSON.parse(string);
-        var car = new Railcar();
-        car.setData(obj.data);
-        car.setCreated(obj.created);
-        car.setDestination(obj.destination);
-        car.setFormat(obj.format);
-        car.setSecret(obj.secret);
-        return car;
+        let obj = JSON.parse(string);
+        let railcar = new Railcar();
+        railcar.setData(obj.data);
+        railcar.setCreated(obj.created);
+        railcar.setDestination(obj.destination);
+        railcar.setFormat(obj.format);
+        railcar.setSecret(obj.secret);
+        railcar.setRequireConsumer(obj.require_consumer);
+        return railcar;
     }
 
 }
@@ -116,7 +126,7 @@ class Trainyard {
             return;
         const channel = await this.connection.createChannel();
         const channel_queue = await channel.assertQueue(message.destination, { durable: false });
-        if (!(channel_queue.consumerCount > 0))
+        if (!(channel_queue.consumerCount > 0) && message.require_consumer)
             throw new Error("No consumers for queue " + message.destination);
         channel.sendToQueue(message.destination, Buffer.from(message.toString()));
     }
