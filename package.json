@@ -1,0 +1,11 @@
+{
+  "name": "trainyard",
+  "version": "0.1.0",
+  "description": "A bidirectional task queue built on amqp",
+  "main": "index.js",
+  "author": "Raymond Wang",
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.10.2"
+  }
+}
