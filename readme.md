@@ -2,7 +2,7 @@
 
 [![Node.js Package](https://github.com/waymondrang/trainyard/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/waymondrang/trainyard/actions/workflows/npm-publish.yml)
 
-A bidirectional task queue built on amqp
+A tiny train-themed amqplib wrapper
 
 ## Examples
 

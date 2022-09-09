@@ -1,7 +1,7 @@
 {
   "name": "trainyard",
   "version": "0.1.1",
-  "description": "A bidirectional task queue built on amqp",
+  "description": "A tiny train-themed amqplib wrapper",
   "main": "index",
   "author": {
     "name": "Raymond Wang",
